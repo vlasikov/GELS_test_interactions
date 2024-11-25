@@ -233,6 +233,33 @@ void MainWindow::addRandomGraph()
   ui->customPlot->replot();
 }
 
+void MainWindow::addMainGraph()
+{
+  int n = 10; // number of points in graph
+  double xScale = 1;
+  double yScale = 1;
+  double xOffset = 0;
+  double yOffset = 0;
+
+  QVector<double> x(n), y(n);
+  for (int i=0; i<n; i++)
+  {
+    x[i] = (i)*1.0*xScale + xOffset;
+    y[i] = (qSin(x[i]))*yScale + yOffset;
+  }
+
+  ui->customPlot->addGraph();
+  ui->customPlot->graph()->setName(QString("New graph %1").arg(ui->customPlot->graphCount()-1));
+  ui->customPlot->graph()->setData(x, y);
+  ui->customPlot->graph()->setLineStyle(QCPGraph::lsLine);
+
+  QPen graphPen;
+  graphPen.setColor(QColor(255,0,0));
+  graphPen.setWidthF(3);
+  ui->customPlot->graph()->setPen(graphPen);
+  ui->customPlot->replot();
+}
+
 void MainWindow::removeSelectedGraph()
 {
   if (ui->customPlot->selectedGraphs().size() > 0)
@@ -263,6 +290,7 @@ void MainWindow::contextMenuRequest(QPoint pos)
   } else  // general context menu on graphs requested
   {
     menu->addAction("Add random graph", this, SLOT(addRandomGraph()));
+    menu->addAction("Add main graph", this, SLOT(addMainGraph()));
     if (ui->customPlot->selectedGraphs().size() > 0)
       menu->addAction("Remove selected graph", this, SLOT(removeSelectedGraph()));
     if (ui->customPlot->graphCount() > 0)

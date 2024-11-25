@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += core gui
+QT       += network core gui
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets printsupport
 
 greaterThan(QT_MAJOR_VERSION, 4): CONFIG += c++11
@@ -14,11 +14,13 @@ TARGET = interaction-example
 TEMPLATE = app
 
 SOURCES += main.cpp\
+    clienttcp.cpp \
         mainwindow.cpp \
     point_tag.cpp \
     qcustomplot.cpp
 
 HEADERS  += mainwindow.h \
+         clienttcp.h \
          point_tag.h \
          qcustomplot.h
 

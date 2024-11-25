@@ -27,6 +27,7 @@ private slots:
   void mousePress();
   void mouseWheel();
   void addRandomGraph();
+  void addMainGraph();
   void removeSelectedGraph();
   void removeAllGraphs();
   void contextMenuRequest(QPoint pos);
