@@ -54,6 +54,7 @@
 #include "client.h"
 #include <QDebug>
 
+
 //! [0]
 Client::Client(QWidget *parent)
     : QDialog(parent)
@@ -191,6 +192,8 @@ void Client::requestNewFortune()
 //! [6]
 
 //! [8]
+/* текстовое считанивание буфера
+ */
 void Client::readFortune()
 {
     in.startTransaction();
