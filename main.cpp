@@ -9,3 +9,6 @@ int main(int argc, char *argv[])
   
   return a.exec();
 }
+
+
+//<header>../../qcustomplot.h</header> file mainwindow.ui -- error
