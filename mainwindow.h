@@ -7,6 +7,8 @@
 #include "point_tag.h"
 #include <QList>
 
+#include "client.h"
+
 namespace Ui {
 class MainWindow;
 }

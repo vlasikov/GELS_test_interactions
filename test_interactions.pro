@@ -14,13 +14,13 @@ TARGET = interaction-example
 TEMPLATE = app
 
 SOURCES += main.cpp\
-#    clienttcp.cpp \
+        client.cpp \
         mainwindow.cpp \
-    point_tag.cpp \
-    qcustomplot.cpp
+        point_tag.cpp \
+        qcustomplot.cpp
 
 HEADERS  += mainwindow.h \
-#         clienttcp.h \
+         client.h \
          point_tag.h \
          qcustomplot.h
 
