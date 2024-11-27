@@ -120,8 +120,8 @@ Client::Client(QWidget *parent)
     connect(getFortuneButton, &QAbstractButton::clicked, this, &Client::requestNewFortune);
     connect(quitButton, &QAbstractButton::clicked, this, &QWidget::close);
 //! [2] //! [3]
-//    connect(tcpSocket, &QIODevice::readyRead, this, &Client::readFortune);
-    connect(tcpSocket, &QIODevice::readyRead, this, &Client::slotTcpRead);
+    connect(tcpSocket, &QIODevice::readyRead, this, &Client::readFortune);
+//    connect(tcpSocket, &QIODevice::readyRead, this, &Client::slotTcpRead);
 //! [2] //! [4]
     connect(tcpSocket, QOverload<QAbstractSocket::SocketError>::of(&QAbstractSocket::error),
 //! [3]
@@ -192,38 +192,42 @@ void Client::requestNewFortune()
 //! [6]
 
 //! [8]
-/* текстовое считанивание буфера
+/* считанивание потока
  */
 void Client::readFortune()
 {
     in.startTransaction();
 
-    QString nextFortune;
-    in >> nextFortune;
+    double x, y;
+    in >> x >> y;
+    qDebug() <<"from PCB value "<< x << y;
+
+//    QString nextFortune;
+//    in >> nextFortune;
 
     if (!in.commitTransaction())
         return;
 
-    if (nextFortune == currentFortune) {
-        QTimer::singleShot(0, this, &Client::requestNewFortune);
-        return;
-    }
+//    if (nextFortune == currentFortune) {
+//        QTimer::singleShot(0, this, &Client::requestNewFortune);
+//        return;
+//    }
 
-    currentFortune = nextFortune;
-    statusLabel->setText(currentFortune);
-    getFortuneButton->setEnabled(true);
+//    currentFortune = nextFortune;
+//    statusLabel->setText(currentFortune);
+//    getFortuneButton->setEnabled(true);
 }
 
 /* бинарное считанивание буфера
  */
 void Client::slotTcpRead()
 {
-    while(tcpSocket->bytesAvailable()>0)
-    {
-        QByteArray array = tcpSocket->readAll();
+//    while(tcpSocket->bytesAvailable()>0)
+//    {
+//        QByteArray array = tcpSocket->readAll();
 
-        qDebug()<<"Read TCP = "<<array;
-    }
+//        qDebug()<<"Read TCP = "<<array;
+//    }
 }
 //! [8]
 
