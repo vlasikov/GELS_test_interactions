@@ -62,6 +62,10 @@ MainWindow::MainWindow(QWidget *parent) :
   connect(ui->customPlot, SIGNAL(customContextMenuRequested(QPoint)), this, SLOT(contextMenuRequest(QPoint)));
 
   connect(ui->customPlot->legend, SIGNAL(selectionChanged(QCPLegend::SelectableParts)), this, SLOT(legendSelectChanged(QCPLegend::SelectableParts)));
+
+  myTcpClient = new Client;
+  myTcpClient->show();
+  connect(myTcpClient, SIGNAL(readyMsgTcp()), this, SLOT(addMainGraph()));
 }
 
 MainWindow::~MainWindow()
@@ -242,7 +246,7 @@ void MainWindow::addMainGraph()
   double yOffset = 0;
 
   QVector<double> x(n), y(n);
-  for (int i=0; i<n; i++)
+  for (int i=0; i<2; i++)
   {
     x[i] = (i)*1.0*xScale + xOffset;
     y[i] = (qSin(x[i]))*yScale + yOffset;

@@ -72,6 +72,9 @@ class Client : public QDialog
 public:
     explicit Client(QWidget *parent = nullptr);
 
+signals:
+    void readyMsgTcp();
+
 private slots:
     void requestNewFortune();
     void readFortune();

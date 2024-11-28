@@ -216,6 +216,8 @@ void Client::readFortune()
 //    currentFortune = nextFortune;
 //    statusLabel->setText(currentFortune);
 //    getFortuneButton->setEnabled(true);
+
+    emit readyMsgTcp();         // signal
 }
 
 /* бинарное считанивание буфера

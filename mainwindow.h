@@ -42,6 +42,7 @@ private:
   Ui::MainWindow *ui;
   QPointer<point_tag> pt[10];
   int pt_ptr = 0;
+  Client *myTcpClient;
 };
 
 #endif // MAINWINDOW_H
