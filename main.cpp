@@ -7,9 +7,6 @@ int main(int argc, char *argv[])
 {
   QApplication a(argc, argv);
 
-  Client myClient;
-  myClient.show();
-
   MainWindow w;
   w.show();
   

@@ -237,8 +237,7 @@ void MainWindow::addRandomGraph()
   ui->customPlot->replot();
 }
 
-void MainWindow::addMainGraph()
-{
+void MainWindow::addMainGraph(){
   int n = 10; // number of points in graph
   double xScale = 1;
   double yScale = 1;
@@ -262,6 +261,10 @@ void MainWindow::addMainGraph()
   graphPen.setWidthF(3);
   ui->customPlot->graph()->setPen(graphPen);
   ui->customPlot->replot();
+}
+
+void MainWindow::addPoints(QVector<double> *vec){
+    qDebug()<<"addPoints()";
 }
 
 void MainWindow::removeSelectedGraph()

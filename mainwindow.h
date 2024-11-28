@@ -6,6 +6,7 @@
 #include "qcustomplot.h"
 #include "point_tag.h"
 #include <QList>
+#include <QVector>
 
 #include "client.h"
 
@@ -20,6 +21,8 @@ class MainWindow : public QMainWindow
 public:
   explicit MainWindow(QWidget *parent = 0);
   ~MainWindow();
+public slots:
+  void addPoints(QVector<double> *vec);
 
 private slots:
   void titleDoubleClick(QMouseEvent *event);

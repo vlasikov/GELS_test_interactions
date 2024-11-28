@@ -71,6 +71,7 @@ class Client : public QDialog
 
 public:
     explicit Client(QWidget *parent = nullptr);
+    QVector<double> *Vec1;
 
 signals:
     void readyMsgTcp();
@@ -84,6 +85,7 @@ private slots:
     void sessionOpened();
 
 private:
+    int cnt;
     QComboBox *hostCombo = nullptr;
     QLineEdit *portLineEdit = nullptr;
     QLabel *statusLabel = nullptr;

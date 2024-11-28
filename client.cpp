@@ -64,6 +64,8 @@ Client::Client(QWidget *parent)
     , tcpSocket(new QTcpSocket(this))
 {
     qDebug()<<"client";
+    cnt = 0;
+    Vec1 = new QVector<double>;
 
     setWindowFlags(windowFlags() & ~Qt::WindowContextHelpButtonHint);
 //! [0]
@@ -198,9 +200,12 @@ void Client::readFortune()
 {
     in.startTransaction();
 
-    double x, y;
-    in >> x >> y;
-    qDebug() <<"from PCB value "<< x << y;
+    double y1, y2;
+    in >>y1 >> y2;
+
+    Vec1->push_back(y1);
+//    qDebug() << Vec1->first();
+    qDebug() <<"Vect = "<< Vec1[0];
 
 //    QString nextFortune;
 //    in >> nextFortune;
@@ -218,6 +223,7 @@ void Client::readFortune()
 //    getFortuneButton->setEnabled(true);
 
     emit readyMsgTcp();         // signal
+    cnt++;
 }
 
 /* бинарное считанивание буфера
