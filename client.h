@@ -54,6 +54,7 @@
 #include <QDataStream>
 #include <QDialog>
 #include <QTcpSocket>
+#include <QTime>
 
 QT_BEGIN_NAMESPACE
 class QComboBox;
@@ -71,10 +72,10 @@ class Client : public QDialog
 
 public:
     explicit Client(QWidget *parent = nullptr);
-    QVector<double> *Vec1, *VectX;
+    QVector<double> *VectTime, *Vect1, *VectX;
 
 signals:
-    void readyMsgTcp(QVector<double> *vect, QVector<double> *vectX);
+    void readyMsgTcp(QVector<double> *VectTime, QVector<double> *Vect1, QVector<double> *vectX);
 
 private slots:
     void requestNewFortune();

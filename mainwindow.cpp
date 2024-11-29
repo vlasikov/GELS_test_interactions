@@ -65,7 +65,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
   myTcpClient = new Client;
   myTcpClient->show();
-  connect(myTcpClient, SIGNAL(readyMsgTcp(QVector<double> *, QVector<double> *)), this, SLOT(addPoints(QVector<double> *, QVector<double> *)));
+  connect(myTcpClient, SIGNAL(readyMsgTcp(QVector<double> *, QVector<double> *, QVector<double> *)), this, SLOT(addPoints(QVector<double> *, QVector<double> *, QVector<double> *)));
 }
 
 MainWindow::~MainWindow()
@@ -263,11 +263,13 @@ void MainWindow::addMainGraph(){
   ui->customPlot->replot();
 }
 
-void MainWindow::addPoints(QVector<double> *vect, QVector<double> *vectX){
+void MainWindow::addPoints(QVector<double> *VectTime, QVector<double> *vect, QVector<double> *vectX){
     qDebug()<<"addPoints()";
+    removeAllGraphs();
+
     ui->customPlot->addGraph();
     ui->customPlot->graph()->setName(QString("New graph %1").arg(ui->customPlot->graphCount()-1));
-    ui->customPlot->graph()->setData(vectX[0], vect[0]);
+    ui->customPlot->graph()->setData(VectTime[0], vect[0]);
     ui->customPlot->graph()->setLineStyle(QCPGraph::lsLine);
 
     QPen graphPen;

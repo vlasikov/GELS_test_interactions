@@ -7,6 +7,7 @@
 #include "point_tag.h"
 #include <QList>
 #include <QVector>
+#include <QDateTime>
 
 #include "client.h"
 
@@ -22,7 +23,7 @@ public:
   explicit MainWindow(QWidget *parent = 0);
   ~MainWindow();
 public slots:
-  void addPoints(QVector<double> *vect, QVector<double> *vectX);
+  void addPoints(QVector<double> *VectTime, QVector<double> *vect, QVector<double> *vectX);
 
 private slots:
   void titleDoubleClick(QMouseEvent *event);

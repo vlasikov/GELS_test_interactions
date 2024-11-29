@@ -65,7 +65,8 @@ Client::Client(QWidget *parent)
 {
     qDebug()<<"client";
     cnt = 0;
-    Vec1 = new QVector<double>;
+    VectTime = new QVector<double>;
+    Vect1 = new QVector<double>;
     VectX = new QVector<double>;
 
     setWindowFlags(windowFlags() & ~Qt::WindowContextHelpButtonHint);
@@ -127,9 +128,7 @@ Client::Client(QWidget *parent)
     connect(tcpSocket, &QIODevice::readyRead, this, &Client::readFortune);
 //    connect(tcpSocket, &QIODevice::readyRead, this, &Client::slotTcpRead);
 //! [2] //! [4]
-    connect(tcpSocket, QOverload<QAbstractSocket::SocketError>::of(&QAbstractSocket::error),
-//! [3]
-            this, &Client::displayError);
+    connect(tcpSocket, QOverload<QAbstractSocket::SocketError>::of(&QAbstractSocket::error), this, &Client::displayError);
 //! [4]
 
     QGridLayout *mainLayout = nullptr;
@@ -202,13 +201,17 @@ void Client::readFortune()
 {
     in.startTransaction();
 
-    double y1, y2;
-    in >>y1 >> y2;
+    double t_, y1, y2;
+    in >> t_ >>y1 >> y2;
 
-    Vec1->push_back(y1);
-    VectX->push_back(cnt);
-//    qDebug() << Vec1->first();
-    qDebug() <<"Vect = "<< Vec1[0];
+    qDebug()<<"time = "<<t_ << ",y1 = " << y1 << ", y2 = " << y2;
+
+    VectTime->push_back(t_);
+    Vect1   ->push_back(y1);
+//    VectX->push_back(cnt);
+
+    qDebug() <<"VectTime = "<< VectTime[0];
+    qDebug() <<"Vect = "<< Vect1[0];
 
 //    QString nextFortune;
 //    in >> nextFortune;
@@ -225,7 +228,7 @@ void Client::readFortune()
 //    statusLabel->setText(currentFortune);
 //    getFortuneButton->setEnabled(true);
 
-    emit readyMsgTcp(Vec1, VectX);         // signal
+    emit readyMsgTcp(VectTime, Vect1, VectX);         // signal
     cnt++;
 }
 
