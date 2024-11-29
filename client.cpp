@@ -66,6 +66,7 @@ Client::Client(QWidget *parent)
     qDebug()<<"client";
     cnt = 0;
     Vec1 = new QVector<double>;
+    VectX = new QVector<double>;
 
     setWindowFlags(windowFlags() & ~Qt::WindowContextHelpButtonHint);
 //! [0]
@@ -94,6 +95,7 @@ Client::Client(QWidget *parent)
     }
 
     portLineEdit->setValidator(new QIntValidator(1, 65535, this));
+    portLineEdit->setText("33333");
 
     auto hostLabel = new QLabel(tr("&Server name:"));
     hostLabel->setBuddy(hostCombo);
@@ -104,7 +106,7 @@ Client::Client(QWidget *parent)
                                 "Fortune Server example as well."));
 
     getFortuneButton->setDefault(true);
-    getFortuneButton->setEnabled(false);
+    getFortuneButton->setEnabled(true);
 
     auto quitButton = new QPushButton(tr("Quit"));
 
@@ -204,6 +206,7 @@ void Client::readFortune()
     in >>y1 >> y2;
 
     Vec1->push_back(y1);
+    VectX->push_back(cnt);
 //    qDebug() << Vec1->first();
     qDebug() <<"Vect = "<< Vec1[0];
 
@@ -222,7 +225,7 @@ void Client::readFortune()
 //    statusLabel->setText(currentFortune);
 //    getFortuneButton->setEnabled(true);
 
-    emit readyMsgTcp();         // signal
+    emit readyMsgTcp(Vec1, VectX);         // signal
     cnt++;
 }
 

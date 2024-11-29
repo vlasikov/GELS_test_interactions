@@ -71,10 +71,10 @@ class Client : public QDialog
 
 public:
     explicit Client(QWidget *parent = nullptr);
-    QVector<double> *Vec1;
+    QVector<double> *Vec1, *VectX;
 
 signals:
-    void readyMsgTcp();
+    void readyMsgTcp(QVector<double> *vect, QVector<double> *vectX);
 
 private slots:
     void requestNewFortune();

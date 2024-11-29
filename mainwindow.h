@@ -22,7 +22,7 @@ public:
   explicit MainWindow(QWidget *parent = 0);
   ~MainWindow();
 public slots:
-  void addPoints(QVector<double> *vec);
+  void addPoints(QVector<double> *vect, QVector<double> *vectX);
 
 private slots:
   void titleDoubleClick(QMouseEvent *event);
